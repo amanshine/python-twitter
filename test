@@ -1,0 +1,17 @@
+import twitter
+import time
+api = twitter.Api(consumer_key=’oOu14Ybi7WwF4ddzUFee5Gbkv’, consumer_secret=’h3RMzEgMeNQxQXagw0gGH4ejckcX3x00Fo1kOJyRRxCWC9lvIb’, access_token_key=’3049268832-EcHV1X4sNQS4ZtXtX0r62xIrdGsPzGSBjOTaAUo’, access_token_secret=’6nZ3pcKOBavIAVZspqERusWjFAi9gXbnNU6hkZNeNb5bG’)
+start = time.time()
+i = 0
+friends=api.GetFriends()
+while (1):
+try:
+for u in friends:
+print “Deleting %s” % (u.name)
+api.DestroyFriendship(u.id);
+i = i + 1
+except:
+print “Possibly Rate limited? sleeping 60 seconds”
+time.sleep(60)
+elapsed = (time.time() – start)
+print “Deleted %s friends in %0.2f seconds” % (str(i), elapsed)
